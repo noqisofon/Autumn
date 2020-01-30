@@ -7,17 +7,18 @@ jobs:
     name: Debug Build & Test
 
     strategy:
-      os: [ ubuntu-latest, windows-latest, macos-latest ]
-      dotnet-version: [ 3.1 ]
-      include:
-        - dotnet-version: 2.1
-          dotnet-sdk-version: 2.1.607
-        - dotnet-version: 2.2
-          dotnet-sdk-version: 2.2.207
-        - dotnet-version: 3.0
-          dotnet-sdk-version: 3.0.101
-        - dotnet-version: 3.1
-          dotnet-sdk-version: 3.1.100
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        dotnet-version: [ 3.1 ]
+        include:
+          - dotnet-version: 2.1
+            dotnet-sdk-version: 2.1.607
+          - dotnet-version: 2.2
+            dotnet-sdk-version: 2.2.207
+          - dotnet-version: 3.0
+            dotnet-sdk-version: 3.0.101
+          - dotnet-version: 3.1
+            dotnet-sdk-version: 3.1.100
 
     runs-on: ${{ matrix.os }}
 
