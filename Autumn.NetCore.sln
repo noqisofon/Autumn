@@ -9,7 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E2D48BB5-CDF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D270F671-E210-472F-B498-88985C042D55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autumn.Core.Tests", "test\Autumn.Core.Tests\Autumn.Core.Tests.csproj", "{F58A779C-0BBE-4F95-A5DB-F8C1B29513D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autumn.Core.Tests", "test\Autumn.Core.Tests\Autumn.Core.Tests.csproj", "{F58A779C-0BBE-4F95-A5DB-F8C1B29513D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA3C896B-9D07-4FFA-B221-E55EDA404C4A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
