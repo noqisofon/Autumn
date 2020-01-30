@@ -18,7 +18,7 @@ jobs:
           - dotnet-version: 3.0
             dotnet-sdk-version: 3.0.101
           - dotnet-version: 3.1
-            dotnet-sdk-version: 3.1.100
+            dotnet-sdk-version: 3.1.101
 
     runs-on: ${{ matrix.os }}
 
