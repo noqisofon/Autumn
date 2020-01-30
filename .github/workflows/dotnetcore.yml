@@ -3,15 +3,39 @@ name: .NET Core
 on: [push]
 
 jobs:
-  build:
+  test:
+    name: Debug Build & Test
 
-    runs-on: ubuntu-latest
+    strategy:
+      os: [ ubuntu-latest, windows-latest, macos-latest ]
+      dotnet-version: [ 3.1 ]
+      include:
+        - dotnet-version: 2.1
+          dotnet-sdk-version: 2.1.607
+        - dotnet-version: 2.2
+          dotnet-sdk-version: 2.2.207
+        - dotnet-version: 3.0
+          dotnet-sdk-version: 3.0.101
+        - dotnet-version: 3.1
+          dotnet-sdk-version: 3.1.100
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.100
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+      - uses: actions/checkout@v21
+      # - uses: actions/cache@v1
+      #   with:
+      #     path: ${{ github.workspace }}/.nuget/packages
+      #     key: 
+      - name: Setup .NET Core ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Resotre Tool
+        run: dotnet tool restore
+      - name: Lint
+        run: dotnet format --check --dry-run
+      - name: Debug Build
+        run: dotnet build -c Debug
+      - name: Test
+        run: dotnet test -c Debug --no-build
