@@ -23,7 +23,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v21
+      - uses: actions/checkout@v2
       # - uses: actions/cache@v1
       #   with:
       #     path: ${{ github.workspace }}/.nuget/packages
