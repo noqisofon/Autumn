@@ -1,5 +1,5 @@
 ﻿using Autumn.Extensions;
-
+using System;
 using System.Text.RegularExpressions;
 
 namespace Autumn.Core {
@@ -7,21 +7,21 @@ namespace Autumn.Core {
     /// <summary>
     ///
     /// </summary>
-    public abstract class RegularCriteria : ICriteria {
+    public abstract class RegularExpressionCriteria : ICriteria {
 
         #region Protected Constructors
 
         /// <summary>
         ///
         /// </summary>
-        protected RegularCriteria() : this( RegexOptions.IgnoreCase, MatchAnyThingPattern ) {
+        protected RegularExpressionCriteria() : this( RegexOptions.IgnoreCase, MatchAnyThingPattern ) {
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="pattern"></param>
-        protected RegularCriteria(string pattern) : this( RegexOptions.IgnoreCase, pattern ) {
+        protected RegularExpressionCriteria(string pattern) : this( RegexOptions.IgnoreCase, pattern ) {
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Autumn.Core {
         /// </summary>
         /// <param name="options"></param>
         /// <param name="parttern"></param>
-        protected RegularCriteria(RegexOptions options, string pattern) {
+        protected RegularExpressionCriteria(RegexOptions options, string pattern) {
             this.Options = options;
             this.Pattern = pattern;
         }
@@ -74,6 +74,19 @@ namespace Autumn.Core {
 
         #endregion Public Methods
 
+        #region Protected Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected bool IsMatch(string name) {
+            return this.Expression.IsMatch( name );
+        }
+
+        #endregion Protected Methods
+
         #region Protected Fields
 
         /// <summary>
@@ -91,5 +104,6 @@ namespace Autumn.Core {
         private string pattern;
 
         #endregion Private Fields
+
     }
 }

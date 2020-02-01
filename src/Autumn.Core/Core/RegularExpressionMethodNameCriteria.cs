@@ -1,13 +1,14 @@
 ﻿using Autumn.Extensions;
 
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace Autumn.Core {
 
     /// <summary>
     ///
     /// </summary>
-    public class RegularExpressionMethodNameCriteria : RegularCriteria {
+    public class RegularExpressionMethodNameCriteria : RegularExpressionCriteria {
 
         /// <summary>
         ///
@@ -30,7 +31,12 @@ namespace Autumn.Core {
         /// <param name="datum"></param>
         /// <returns></returns>
         public override bool IsSatisfied(object datum) {
-            throw new System.NotImplementedException();
+            var method = datum as MethodInfo;
+            if ( method == null ) {
+                return false;
+            }
+
+            return base.IsMatch( method.Name );
         }
 
         /// <summary>
